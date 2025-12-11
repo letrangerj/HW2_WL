@@ -36,7 +36,7 @@ print(table(colData(reference_se)$cell_type))
 
 # Load spatial data from pipeline.py output
 print("Loading ST data...")
-counts_matrix <- readMM("results/rctd_input/spatial_counts_raw.npz")
+counts_matrix <- readMM("results/rctd_input/spatial_counts_raw.mtx")
 genes <- read.csv("results/rctd_input/genes.csv", header = FALSE)[,1]
 spot_metadata <- read.csv("results/rctd_input/spot_metadata.csv", row.names = 1)
 
@@ -53,7 +53,7 @@ rctd_data <- createRctd(spatial_spe, reference_se)
 
 ## Run RCTD
 print("Running RCTD...")
-results_spe <- runRctd(rctd_data, rctd_mode = "doublet", max_cores = 1)
+results_spe <- runRctd(rctd_data, rctd_mode = "full", max_cores = 1)
 
 print("RCTD completed successfully!")
 print("Results available in results_spe object")
